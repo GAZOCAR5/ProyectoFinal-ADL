@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Control Paseos mascotas </string>
+    <string name="titulo_pantalla">Control de Paseos</string>
+    <string name="boton_nuevo_paseo">Nuevo Paseo</string>
+</resources>
