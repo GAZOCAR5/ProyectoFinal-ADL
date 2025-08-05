@@ -1,4 +1,4 @@
-package com.tesmiguegazocar.controlpaseosmascota
+package com.tesmiguegazocar.controlpaseosmascotas
 
 import org.junit.Test
 
