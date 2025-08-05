@@ -1,38 +1,89 @@
-package com.tesmiguegazocar.controlpaseosmascotas.ui.screens
+package com.tesmiguegazocar.controlpaseosmascotas.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.Alignment
+import com.tesmiguegazocar.controlpaseosmascotas.modelovista.ModeloVistaPaseos
+import com.tesmiguegazocar.controlpaseosmascotas.utilidades.formatearDinero
 
 @Composable
-fun Estadisticas() {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+fun EstadisticasCard(viewModel: ModeloVistaPaseos) {
+    val totalGanado by viewModel.totalGanado.collectAsState()
+    val totalPendiente by viewModel.totalPendiente.collectAsState()
+    val total = totalGanado + totalPendiente
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        EstadisticaItem("Ganado", "$0", Color(0xFF4CAF50), Modifier.weight(1f))
-        EstadisticaItem("Pendiente", "$0", Color(0xFFFF9800), Modifier.weight(1f))
-        EstadisticaItem("Total", "$0", Color(0xFF1976D2), Modifier.weight(1f))
+        Text(
+            text = "Resumen Financiero",
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            EstadisticaItem(
+                titulo = "Ganado",
+                valor = formatearDinero(totalGanado),
+                color = Color(0xFF1B5E20),
+                icon = "💰"
+            )
+            EstadisticaItem(
+                titulo = "Pendiente",
+                valor = formatearDinero(totalPendiente),
+                color = Color(0xFFF57C00),
+                icon = "⏳"
+            )
+            EstadisticaItem(
+                titulo = "Total",
+                valor = formatearDinero(total),
+                color = Color(0xFF0D47A1),
+                icon = "📈"
+            )
+        }
     }
 }
 
 @Composable
-fun EstadisticaItem(titulo: String, valor: String, color: Color, modifier: Modifier = Modifier) {
+fun EstadisticaItem(titulo: String, valor: String, color: Color, icon: String) {
     Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(containerColor = color.copy(alpha = 0.1f)),
-        elevation = CardDefaults.cardElevation(4.dp)
+        modifier = Modifier
+            .width(110.dp)
+            .height(120.dp),
+        elevation = CardDefaults.cardElevation(6.dp),
+        colors = CardDefaults.cardColors(containerColor = color.copy(alpha = 0.15f))
     ) {
         Column(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(titulo, style = MaterialTheme.typography.labelLarge)
-            Text(valor, style = MaterialTheme.typography.headlineSmall, color = color)
+            Text(icon, fontSize = MaterialTheme.typography.headlineMedium.fontSize)
+            Text(
+                text = titulo,
+                style = MaterialTheme.typography.bodyMedium,
+                color = color
+            )
+            Text(
+                text = valor,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = color
+            )
         }
     }
 }
