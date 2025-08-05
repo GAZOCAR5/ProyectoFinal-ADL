@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Theme.ControlPaseosMascota" parent="android:Theme.Material.Light.NoActionBar" />
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Controlpaseosmascotas" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Esta línea es solo para evitar errores XML, no se usará en Compose -->
+        <item name="android:statusBarColor" tools:targetApi="21">@android:color/transparent</item>
+    </style>
 </resources>

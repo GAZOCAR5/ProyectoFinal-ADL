@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.tesmigue.controlpaseosmascotas"
+    namespace = "com.tesmiguegazocar.controlpaseosmascotas"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.tesmigue.controlpaseosmascotas"
+        applicationId = "com.tesmiguegazocar.controlpaseosmascotas"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -67,7 +67,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
-
+    implementation("com.google.android.material:material:1.11.0")
     // ViewModel Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
 
